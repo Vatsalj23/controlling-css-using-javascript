@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root{
+            --base : rgb(255, 255, 0);
+            --spacing: 10px;
+            --blur: 10px;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+            background-color: black;
+        }
+        img{
+            margin: 20px 100px 0px 225px;
+            height: 500px;
+            width: 1000px;
+        }
+        img{
+            padding: var(--spacing);
+            background: var(--base);
+            filter: blur(var(--blur));
+        }
+        .controls{
+            color: aqua;
+            font-size: x-large;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+
+        .h1{
+            color: var(--base);
+        }
+        .header{
+            text-align: center;
+            color: azure;
+            font-size: 50px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        Update CSS Variables <br> with <span class="h1">JS</span>
+    </div>
+<div>
+    <div class="controls">
+
+        <label for="spacing">Spacing:</label>
+        <input type="range" name="spacing" min="10" max="100" value="10" data-sizing="px">
+            &nbsp;&nbsp;
+        <label for="blur">Blur:</label>
+        <input type="range" name="blur" min="0" max="25" value="10" data-sizing="px" >
+            &nbsp;&nbsp;
+        <label for="base">Base:</label><br><br>
+        <input type="color" name="base" style="width:110px;" value="#ffc600">
+
+    </div>
+    <img src="pexels-albin-berlin-919073.jpg">
+</div>
+
+
+    <script>
+        const inputs = document.querySelectorAll('input');
+
+        function handelUpdate(){
+            const suffix = this.dataset.sizing || '';
+            document.documentElement.style.setProperty(`--${this.name}` , this.value + suffix);
+        }
+        inputs.forEach(input => input.addEventListener('change', handelUpdate));
+        inputs.forEach(input => input.addEventListener('mousemove', handelUpdate));
+    </script>
+</body>
+</html>
